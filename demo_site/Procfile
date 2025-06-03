@@ -1,0 +1,1 @@
+web: uvicorn adult_demo_site:app --host 0.0.0.0 --port $PORT 
