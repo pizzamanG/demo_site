@@ -1,7 +1,7 @@
 fastapi==0.104.1
 uvicorn==0.24.0 
 # Core API dependencies
-pydantic==2.4.2 
+
 # Core BlockVerify Dependencies (Required)
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
@@ -45,5 +45,3 @@ colorama==0.4.6
 aiofiles==23.2.1
 python-dateutil==2.8.2
 
-# Core API dependencies
-pydantic==2.4.2 
