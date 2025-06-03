@@ -1,2 +1,49 @@
 fastapi==0.104.1
 uvicorn==0.24.0 
+# Core API dependencies
+pydantic==2.4.2 
+# Core BlockVerify Dependencies (Required)
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+sqlmodel==0.0.14
+sqlalchemy==2.0.23
+psycopg2-binary==2.9.9
+pydantic[email]==2.5.0
+pydantic-settings==2.1.0
+jwcrypto==1.5.0
+webauthn==1.11.1
+python-multipart==0.0.6
+
+# JWT Libraries (both needed)
+PyJWT==2.8.0
+python-jose[cryptography]==3.3.0
+
+# Blockchain dependencies
+web3==6.11.3
+eth-account==0.10.0
+
+# B2B Portal & Billing System
+stripe==7.8.0
+jinja2==3.1.2
+
+# API Management & Rate Limiting
+redis==5.0.1
+python-dotenv==1.0.0
+slowapi==0.1.9
+
+# Analytics & Monitoring
+geoip2==4.7.0
+user-agents==2.2.0
+
+# Development/Testing
+pytest==7.4.3
+httpx==0.25.2
+requests==2.31.0
+colorama==0.4.6
+
+# Additional production dependencies
+aiofiles==23.2.1
+python-dateutil==2.8.2
+
+# Core API dependencies
+pydantic==2.4.2 
