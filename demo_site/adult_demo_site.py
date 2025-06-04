@@ -20,7 +20,7 @@ async def home():
 async def adult_site(verified: str = Query(None)):
     """The actual adult demo site"""
     
-    return """
+    return f"""
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -28,43 +28,43 @@ async def adult_site(verified: str = Query(None)):
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>🔞 PremiumAdultSite.com - BlockVerify Protected</title>
         <style>
-            body {
+            body {{
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
                 margin: 0;
                 padding: 0;
                 background: #1a1a1a;
                 color: white;
                 min-height: 100vh;
-            }
-            .container {
+            }}
+            .container {{
                 max-width: 1200px;
                 margin: 0 auto;
                 padding: 40px 20px;
-            }
-            .header {
+            }}
+            .header {{
                 text-align: center;
                 margin-bottom: 40px;
                 padding: 40px;
                 background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
                 border-radius: 12px;
-            }
-            .content-grid {
+            }}
+            .content-grid {{
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
                 gap: 20px;
                 margin: 40px 0;
-            }
-            .content-card {
+            }}
+            .content-card {{
                 background: rgba(255,255,255,0.1);
                 padding: 30px;
                 border-radius: 12px;
                 text-align: center;
                 transition: transform 0.3s;
-            }
-            .content-card:hover {
+            }}
+            .content-card:hover {{
                 transform: translateY(-5px);
-            }
-            .btn {
+            }}
+            .btn {{
                 background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
                 color: white;
                 border: none;
@@ -74,35 +74,35 @@ async def adult_site(verified: str = Query(None)):
                 font-size: 16px;
                 font-weight: 500;
                 transition: all 0.3s;
-            }
-            .btn:hover {
+            }}
+            .btn:hover {{
                 background: linear-gradient(135deg, #ff5252 0%, #e55100 100%);
                 transform: translateY(-2px);
-            }
-            .privacy-info {
+            }}
+            .privacy-info {{
                 background: rgba(76,175,80,0.1);
                 border: 2px solid #4CAF50;
                 padding: 30px;
                 border-radius: 12px;
                 margin: 40px 0;
-            }
-            .age-gate {
+            }}
+            .age-gate {{
                 background: rgba(255,107,107,0.1);
                 border: 2px solid #ff6b6b;
                 padding: 60px;
                 border-radius: 12px;
                 text-align: center;
                 margin: 40px 0;
-            }
-            .loading {
+            }}
+            .loading {{
                 display: none;
                 text-align: center;
                 padding: 40px;
                 background: rgba(33,150,243,0.1);
                 border-radius: 12px;
                 margin: 20px 0;
-            }
-            .spinner {
+            }}
+            .spinner {{
                 border: 4px solid #f3f3f3;
                 border-top: 4px solid #2196F3;
                 border-radius: 50%;
@@ -110,12 +110,12 @@ async def adult_site(verified: str = Query(None)):
                 height: 40px;
                 animation: spin 1s linear infinite;
                 margin: 0 auto 20px;
-            }
-            @keyframes spin {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-            }
-            .verification-status {
+            }}
+            @keyframes spin {{
+                0% {{ transform: rotate(0deg); }}
+                100% {{ transform: rotate(360deg); }}
+            }}
+            .verification-status {{
                 position: fixed;
                 bottom: 20px;
                 right: 20px;
@@ -124,14 +124,14 @@ async def adult_site(verified: str = Query(None)):
                 color: white;
                 font-weight: 500;
                 z-index: 1000;
-            }
-            .status-verified {
+            }}
+            .status-verified {{
                 background: #4CAF50;
-            }
-            .status-pending {
+            }}
+            .status-pending {{
                 background: #ff9800;
-            }
-            .dev-info {
+            }}
+            .dev-info {{
                 background: rgba(33,150,243,0.1);
                 border: 1px solid #2196F3;
                 padding: 20px;
@@ -139,7 +139,7 @@ async def adult_site(verified: str = Query(None)):
                 margin: 20px 0;
                 font-family: monospace;
                 font-size: 14px;
-            }
+            }}
         </style>
     </head>
     <body>
@@ -239,95 +239,95 @@ async def adult_site(verified: str = Query(None)):
         <!-- BlockVerify SDK Integration -->
         <script>
             // Configuration - Replace with your real API key
-            const BLOCKVERIFY_CONFIG = {
+            const BLOCKVERIFY_CONFIG = {{
                 apiUrl: 'https://blockverify-api-production.up.railway.app',
                 verifyUrl: 'https://blockverify-api-production.up.railway.app/verify',
                 returnUrl: window.location.href.split('?')[0] + '/site',
                 debug: true
-            };
+            }}};
 
             // Simple BlockVerify SDK implementation
-            class BlockVerifySDK {
-                constructor(config) {
+            class BlockVerifySDK {{
+                constructor(config) {{
                     this.config = config;
                     this.log('🔐 BlockVerify SDK initialized');
-                }
+                }}
 
-                log(message, data = '') {
-                    if (this.config.debug) {
-                        console.log(`[BlockVerify] ${message}`, data);
-                    }
-                }
+                log(message, data = '') {{
+                    if (this.config.debug) {{
+                        console.log(`[BlockVerify] ${{message}}`, data);
+                    }}
+                }}
 
                 // Check if user has a valid age verification token
-                checkAgeVerification() {
+                checkAgeVerification() {{
                     this.log('🔍 Checking age verification...');
                     
                     // Check URL for verification callback
                     const urlParams = new URLSearchParams(window.location.search);
-                    if (urlParams.get('verified') === 'true') {
+                    if (urlParams.get('verified') === 'true') {{
                         this.log('🔄 User returned from verification');
                         // Small delay to allow token to be set
                         setTimeout(() => this.validateToken(), 500);
                         return;
-                    }
+                    }}
 
                     // Check for existing token
                     const token = this.getStoredToken();
-                    if (token) {
+                    if (token) {{
                         this.log('🎫 Found stored token', token.substring(0, 20) + '...');
                         this.validateToken();
-                    } else {
+                    }} else {{
                         this.log('❌ No token found, showing age gate');
                         this.showAgeGate();
-                    }
-                }
+                    }}
+                }}
 
-                getStoredToken() {
+                getStoredToken() {{
                     // Try multiple storage locations
                     return localStorage.getItem('AgeToken') ||
                            this.getCookie('AgeToken') ||
                            sessionStorage.getItem('AgeToken');
-                }
+                }}
 
-                getCookie(name) {
+                getCookie(name) {{
                     const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
                     return match ? match[2] : null;
-                }
+                }}
 
-                validateToken() {
+                validateToken() {{
                     const token = this.getStoredToken();
-                    if (!token) {
+                    if (!token) {{
                         this.showAgeGate();
                         return;
-                    }
+                    }}
 
                     // For demo purposes, validate locally
                     // In production, you'd send this to your backend with your API key
-                    if (token.includes('adult_verified') || token.includes('verified')) {
+                    if (token.includes('adult_verified') || token.includes('verified')) {{
                         this.log('✅ Token validation successful');
                         this.showPremiumContent(token);
-                    } else {
+                    }} else {{
                         this.log('❌ Token validation failed');
                         this.showAgeGate();
-                    }
-                }
+                    }}
+                }}
 
-                showLoadingScreen() {
+                showLoadingScreen() {{
                     document.getElementById('loadingScreen').style.display = 'block';
                     document.getElementById('ageGate').style.display = 'none';
                     document.getElementById('premiumContent').style.display = 'none';
-                }
+                }}
 
-                showAgeGate() {
+                showAgeGate() {{
                     document.getElementById('loadingScreen').style.display = 'none';
                     document.getElementById('ageGate').style.display = 'block';
                     document.getElementById('premiumContent').style.display = 'none';
                     
                     this.showStatus('Age verification required', 'pending');
-                }
+                }}
 
-                showPremiumContent(token) {
+                showPremiumContent(token) {{
                     document.getElementById('loadingScreen').style.display = 'none';
                     document.getElementById('ageGate').style.display = 'none';
                     document.getElementById('premiumContent').style.display = 'block';
@@ -338,33 +338,33 @@ async def adult_site(verified: str = Query(None)):
                     
                     this.showStatus('Age verified (18+)', 'verified');
                     this.log('🎉 Premium content unlocked');
-                }
+                }}
 
-                showStatus(message, type) {
+                showStatus(message, type) {{
                     // Remove existing status
                     const existing = document.querySelector('.verification-status');
                     if (existing) existing.remove();
 
                     // Add new status
                     const status = document.createElement('div');
-                    status.className = `verification-status status-${type}`;
+                    status.className = `verification-status status-${{type}}`;
                     status.textContent = message;
                     document.body.appendChild(status);
 
                     // Auto-remove after 5 seconds
-                    setTimeout(() => {
+                    setTimeout(() => {{
                         if (status.parentNode) status.remove();
-                    }, 5000);
-                }
+                    }}, 5000);
+                }}
 
-                startVerification() {
+                startVerification() {{
                     this.log('🚀 Starting verification process...');
-                    const verifyUrl = `${this.config.verifyUrl}?return_url=${encodeURIComponent(this.config.returnUrl)}`;
+                    const verifyUrl = `${{this.config.verifyUrl}}?return_url=${{encodeURIComponent(this.config.returnUrl)}}`;
                     this.log('🔄 Redirecting to:', verifyUrl);
                     window.location.href = verifyUrl;
-                }
+                }}
 
-                clearVerification() {
+                clearVerification() {{
                     this.log('🗑️ Clearing verification data...');
                     localStorage.removeItem('AgeToken');
                     sessionStorage.removeItem('AgeToken');
@@ -372,38 +372,38 @@ async def adult_site(verified: str = Query(None)):
                     
                     // Refresh page
                     window.location.href = window.location.href.split('?')[0] + '/site';
-                }
-            }
+                }}
+            }}
 
             // Initialize SDK when page loads
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function() {{
                 window.blockVerify = new BlockVerifySDK(BLOCKVERIFY_CONFIG);
                 
                 // Show loading screen initially
                 window.blockVerify.showLoadingScreen();
                 
                 // Start verification check after a brief delay
-                setTimeout(() => {
+                setTimeout(() => {{
                     window.blockVerify.checkAgeVerification();
-                }, 1000);
-            });
+                }}, 1000);
+            }});
 
             // Global functions for UI
-            function startVerification() {
+            function startVerification() {{
                 window.blockVerify.startVerification();
-            }
+            }}
 
-            function clearVerification() {
-                if (confirm('This will clear your verification and require you to verify again. Continue?')) {
+            function clearVerification() {{
+                if (confirm('This will clear your verification and require you to verify again. Continue?')) {{
                     window.blockVerify.clearVerification();
-                }
-            }
+                }}
+            }}
 
             // URL parameter check for verification callback
             const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('verified') === 'true') {
+            if (urlParams.get('verified') === 'true') {{
                 console.log('🔄 [BlockVerify] Verification callback detected');
-            }
+            }}
         </script>
     </body>
     </html>
