@@ -14,7 +14,7 @@ import uvicorn
 app = FastAPI(title="Adult Demo Site", version="1.0.0")
 
 # Your real API key - in production, store this as an environment variable
-BLOCKVERIFY_API_KEY = "bv_prod_wuz0o51nqHDGgMuhqf4ZbEXeEJmNlDX94qYSyOKOu48"
+BLOCKVERIFY_API_KEY = "bv_prod_5ByhSG6XnKQVdutT4Q3ewHEOzRQUQ8YHPPEcX8qVvd4"
 BLOCKVERIFY_API_URL = "https://blockverify-api-production.up.railway.app"
 
 class TokenVerifyRequest(BaseModel):
