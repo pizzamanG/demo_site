@@ -363,24 +363,34 @@ async def adult_site(verified: str = Query(None)):
                 async checkAgeVerification() {{
                     this.log('🔍 Checking age verification...');
                     
-                    // Check URL for verification callback
+                    // Check URL for verification callback FIRST
                     const urlParams = new URLSearchParams(window.location.search);
                     if (urlParams.get('verified') === 'true') {{
-                        this.log('🔄 User returned from verification');
+                        this.log('🔄 User returned from verification - processing immediately');
+                        
+                        // Hide all sections immediately
+                        document.getElementById('redirectSplash').style.display = 'none';
+                        this.showLoadingScreen();
                         
                         // Get token from URL parameter if available
                         const urlToken = urlParams.get('token');
                         if (urlToken) {{
-                            this.log('💾 Storing token from URL:', urlToken.substring(0, 20) + '...');
+                            this.log('💾 Processing token from URL:', urlToken.substring(0, 20) + '...');
                             localStorage.setItem('AgeToken', urlToken);
+                            
+                            // Clean up URL immediately to prevent loops
+                            window.history.replaceState({{}}, document.title, window.location.pathname);
+                            
+                            // Validate token immediately
+                            await this.validateToken();
+                        }} else {{
+                            this.log('⚠️ Verification callback but no token in URL');
+                            this.showAgeGate();
                         }}
-                        
-                        // Small delay to allow token to be processed
-                        setTimeout(() => this.validateToken(), 1000);
                         return;
                     }}
 
-                    // Check for existing token
+                    // Check for existing token (normal flow)
                     const token = this.getStoredToken();
                     if (token) {{
                         this.log('🎫 Found stored token, validating with API...');
@@ -440,12 +450,14 @@ async def adult_site(verified: str = Query(None)):
                 }}
 
                 showLoadingScreen() {{
+                    document.getElementById('redirectSplash').style.display = 'none';
                     document.getElementById('loadingScreen').style.display = 'block';
                     document.getElementById('ageGate').style.display = 'none';
                     document.getElementById('premiumContent').style.display = 'none';
                 }}
 
                 showAgeGate() {{
+                    document.getElementById('redirectSplash').style.display = 'none';
                     document.getElementById('loadingScreen').style.display = 'none';
                     document.getElementById('ageGate').style.display = 'block';
                     document.getElementById('premiumContent').style.display = 'none';
@@ -454,6 +466,7 @@ async def adult_site(verified: str = Query(None)):
                 }}
 
                 showPremiumContent(token, apiResult) {{
+                    document.getElementById('redirectSplash').style.display = 'none';
                     document.getElementById('loadingScreen').style.display = 'none';
                     document.getElementById('ageGate').style.display = 'none';
                     document.getElementById('premiumContent').style.display = 'block';
