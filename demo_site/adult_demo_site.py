@@ -242,7 +242,7 @@ async def adult_site(verified: str = Query(None)):
             const BLOCKVERIFY_CONFIG = {
                 apiUrl: 'https://blockverify-api-production.up.railway.app',
                 verifyUrl: 'https://blockverify-api-production.up.railway.app/verify',
-                returnUrl: window.location.href.split('?')[0] + '/site',
+                returnUrl: window.location.href.split('?')[0],
                 debug: true
             };
 
@@ -267,8 +267,19 @@ async def adult_site(verified: str = Query(None)):
                     const urlParams = new URLSearchParams(window.location.search);
                     if (urlParams.get('verified') === 'true') {
                         this.log('🔄 User returned from verification');
-                        // Small delay to allow token to be set
-                        setTimeout(() => this.validateToken(), 500);
+                        const urlToken = urlParams.get('token');
+                        if (urlToken) {
+                            this.log('🎫 Received token from URL:', urlToken.substring(0, 20) + '...');
+                            // Store the token
+                            localStorage.setItem('AgeToken', urlToken);
+                            // Show premium content immediately
+                            this.showPremiumContent(urlToken);
+                            // Clean up URL
+                            window.history.replaceState({}, document.title, window.location.pathname);
+                        } else {
+                            this.log('⚠️ Verification callback but no token received');
+                            this.showAgeGate();
+                        }
                         return;
                     }
 
@@ -371,7 +382,7 @@ async def adult_site(verified: str = Query(None)):
                     document.cookie = 'AgeToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
                     
                     // Refresh page
-                    window.location.href = window.location.href.split('?')[0] + '/site';
+                    window.location.href = window.location.pathname;
                 }
             }
 
